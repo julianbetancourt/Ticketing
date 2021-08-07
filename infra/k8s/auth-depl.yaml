@@ -15,7 +15,6 @@ spec:
       containers:
         - name: auth
           image: juliian41/auth
-
 ---
 apiVersion: v1
 kind: Service
