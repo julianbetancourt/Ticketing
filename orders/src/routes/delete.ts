@@ -5,8 +5,8 @@ import {
   NotAuthorizedError,
 } from "@julitickets/common"
 import { Order, OrderStatus } from "../models/order"
-// import { OrderCancelledPublisher } from '../events/publishers/order-cancelled-publisher';
 import { natsWrapper } from "../nats-wrapper"
+import { OrderCancelledPublisher } from "../events/publishers/order-cancelled-publisher"
 
 const router = express.Router()
 
@@ -28,13 +28,13 @@ router.delete(
     await order.save()
 
     // publishing an event saying this was cancelled!
-    // new OrderCancelledPublisher(natsWrapper.client).publish({
-    //   id: order.id,
-    //   version: order.version,
-    //   ticket: {
-    //     id: order.ticket.id,
-    //   },
-    // });
+    new OrderCancelledPublisher(natsWrapper.client).publish({
+      id: order.id,
+      version: order.version,
+      ticket: {
+        id: order.ticket.id,
+      },
+    })
 
     res.status(204).send(order)
   }
