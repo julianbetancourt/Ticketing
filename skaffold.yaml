@@ -32,6 +32,14 @@ build:
         manual:
           - src: "src/**/*.ts"
             dest: .
+    - image: juliian41/expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
     - image: juliian41/client
       context: client
       docker:

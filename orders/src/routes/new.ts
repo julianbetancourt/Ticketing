@@ -30,9 +30,11 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { ticketId } = req.body
-
+    console.log({ ticketId })
     // find ticket user is trying to order
     const ticket = await Ticket.findById(ticketId)
+    const tickets = await Ticket.find({})
+    console.log(tickets)
     if (!ticket) throw new NotFoundError()
 
     // make sure ticket is not reserved
