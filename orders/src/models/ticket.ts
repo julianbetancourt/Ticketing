@@ -48,19 +48,18 @@ const ticketSchema = new mongoose.Schema(
 // ticketSchema.set('versionKey', 'version');
 // ticketSchema.plugin(updateIfCurrentPlugin);
 
-// ticketSchema.statics.findByEvent = (event: { id: string; version: number }) => {
-//   return Ticket.findOne({
-//     _id: event.id,
-//     version: event.version - 1,
-//   });
-// };
+ticketSchema.statics.findByEvent = (event: { id: string; version: number }) => {
+  return Ticket.findOne({
+    _id: event.id,
+    version: event.version - 1,
+  })
+}
 ticketSchema.statics.build = (attrs: TicketAttrs) => {
-  //   return new Ticket({
-  //     _id: attrs.id,
-  //     title: attrs.title,
-  //     price: attrs.price,
-  //   });
-  return new Ticket(attrs)
+  return new Ticket({
+    _id: attrs.id,
+    title: attrs.title,
+    price: attrs.price,
+  })
 }
 ticketSchema.methods.isReserved = async function () {
   // this === the ticket document that we just called 'isReserved' on
