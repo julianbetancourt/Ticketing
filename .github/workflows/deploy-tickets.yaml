@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'tickets/**'
+      - "tickets/**"
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push stephengrider/tickets
+      - run: docker push juliian41/tickets
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
