@@ -5,7 +5,7 @@ export default function buildClient({ req }) {
     // We are on the server
 
     return axios.create({
-      baseURL: "http://www.topfutbol.co/",
+      baseURL: "http://www.julitickets.xyz/",
       headers: req.headers,
     })
   } else {
